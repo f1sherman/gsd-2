@@ -11,27 +11,27 @@ import {
 // ─── supportsServiceTier ─────────────────────────────────────────────────────
 
 describe("supportsServiceTier", () => {
-  test("returns true for gpt-5.4", () => {
-    assert.equal(supportsServiceTier("gpt-5.4"), true);
+  test("returns true for gpt-5.5", () => {
+    assert.equal(supportsServiceTier("gpt-5.5"), true);
   });
 
-  test("returns true for gpt-5.4-pro", () => {
-    assert.equal(supportsServiceTier("gpt-5.4-pro"), true);
+  test("returns true for gpt-5.5-pro", () => {
+    assert.equal(supportsServiceTier("gpt-5.5-pro"), true);
   });
 
-  test("returns true for gpt-5.4-mini", () => {
-    assert.equal(supportsServiceTier("gpt-5.4-mini"), true);
+  test("returns true for gpt-5.5-mini", () => {
+    assert.equal(supportsServiceTier("gpt-5.5-mini"), true);
   });
 
-  test("returns true for openai/gpt-5.4 (provider-prefixed)", () => {
-    assert.equal(supportsServiceTier("openai/gpt-5.4"), true);
+  test("returns true for openai/gpt-5.5 (provider-prefixed)", () => {
+    assert.equal(supportsServiceTier("openai/gpt-5.5"), true);
   });
 
-  test("returns true for vibeproxy-openai/gpt-5.4 (proxy provider-prefixed)", () => {
-    assert.equal(supportsServiceTier("vibeproxy-openai/gpt-5.4"), true);
+  test("returns true for vibeproxy-openai/gpt-5.5 (proxy provider-prefixed)", () => {
+    assert.equal(supportsServiceTier("vibeproxy-openai/gpt-5.5"), true);
   });
 
-  test("returns false for provider-only identifier without gpt-5.4 model suffix", () => {
+  test("returns false for provider-only identifier without a GPT-5 model suffix", () => {
     assert.equal(supportsServiceTier("vibeproxy-openai"), false);
   });
 
@@ -80,7 +80,7 @@ describe("formatServiceTierStatus", () => {
 
 describe("formatServiceTierFooterStatus", () => {
   test("returns priority footer status for supported model", () => {
-    assert.equal(formatServiceTierFooterStatus("priority", "vibeproxy-openai/gpt-5.4"), "fast: ⚡ priority");
+    assert.equal(formatServiceTierFooterStatus("priority", "vibeproxy-openai/gpt-5.5"), "fast: ⚡ priority");
   });
 
   test("returns undefined for unsupported model", () => {
@@ -88,7 +88,7 @@ describe("formatServiceTierFooterStatus", () => {
   });
 
   test("returns undefined when tier is disabled", () => {
-    assert.equal(formatServiceTierFooterStatus(undefined, "gpt-5.4"), undefined);
+    assert.equal(formatServiceTierFooterStatus(undefined, "gpt-5.5"), undefined);
   });
 });
 
@@ -96,12 +96,12 @@ describe("formatServiceTierFooterStatus", () => {
 
 describe("resolveServiceTierIcon", () => {
   test("returns lightning bolt for priority tier on supported model", () => {
-    const icon = resolveServiceTierIcon("priority", "gpt-5.4");
+    const icon = resolveServiceTierIcon("priority", "gpt-5.5");
     assert.equal(icon, "⚡");
   });
 
   test("returns money icon for flex tier on supported model", () => {
-    const icon = resolveServiceTierIcon("flex", "gpt-5.4");
+    const icon = resolveServiceTierIcon("flex", "gpt-5.5");
     assert.equal(icon, "💰");
   });
 
@@ -111,7 +111,7 @@ describe("resolveServiceTierIcon", () => {
   });
 
   test("returns empty string when tier is undefined", () => {
-    const icon = resolveServiceTierIcon(undefined, "gpt-5.4");
+    const icon = resolveServiceTierIcon(undefined, "gpt-5.5");
     assert.equal(icon, "");
   });
 

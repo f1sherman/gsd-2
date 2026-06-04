@@ -82,7 +82,7 @@ const pwd = noMilestone
 const mockHitRate = 85;
 const mockCost = "$18.67";
 const mockCtxUsage = "35%/200k";
-const modelDisplay = "anthropic/claude-opus-4-6";
+const modelDisplay = "openai/gpt-5.5";
 // Mock last commit
 const lastCommitTimeAgo = "3m";
 const lastCommitMessage = "fix auth middleware";

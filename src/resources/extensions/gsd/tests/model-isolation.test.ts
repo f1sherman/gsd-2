@@ -50,7 +50,7 @@ describe("model config isolation (#650)", () => {
     const globalSettingsPath = join(tmpGlobal, "settings.json");
     writeFileSync(globalSettingsPath, JSON.stringify({
       defaultProvider: "openai",
-      defaultModel: "gpt-5.4",
+      defaultModel: "gpt-5.5",
     }));
 
     // Verify project settings exist and have independent data
@@ -58,7 +58,7 @@ describe("model config isolation (#650)", () => {
     const globalData = JSON.parse(readFileSync(globalSettingsPath, "utf-8"));
 
     assert.equal(projectData.defaultModel, "claude-opus-4-6");
-    assert.equal(globalData.defaultModel, "gpt-5.4");
+    assert.equal(globalData.defaultModel, "gpt-5.5");
     assert.notEqual(projectData.defaultModel, globalData.defaultModel,
       "Project and global should have different models");
   });
@@ -73,14 +73,14 @@ describe("model config isolation (#650)", () => {
     }));
     writeFileSync(settingsB, JSON.stringify({
       defaultProvider: "openai-codex",
-      defaultModel: "gpt-5.4",
+      defaultModel: "gpt-5.5",
     }));
 
     const dataA = JSON.parse(readFileSync(settingsA, "utf-8"));
     const dataB = JSON.parse(readFileSync(settingsB, "utf-8"));
 
     assert.equal(dataA.defaultModel, "claude-opus-4-6");
-    assert.equal(dataB.defaultModel, "gpt-5.4");
+    assert.equal(dataB.defaultModel, "gpt-5.5");
     assert.notEqual(dataA.defaultProvider, dataB.defaultProvider);
   });
 
@@ -89,7 +89,7 @@ describe("model config isolation (#650)", () => {
     const autoModeStartModel = { provider: "anthropic", id: "claude-opus-4-6" };
 
     // Simulate another instance writing to global settings
-    const globalSettings = { defaultProvider: "openai-codex", defaultModel: "gpt-5.4" };
+    const globalSettings = { defaultProvider: "openai-codex", defaultModel: "gpt-5.5" };
 
     // The captured model should be used, not the global settings
     assert.notEqual(autoModeStartModel.id, globalSettings.defaultModel);
@@ -130,8 +130,8 @@ describe("session model recovery on error (#1065)", () => {
   it("cross-session model leakage scenario is detected", () => {
     // Session A: user chose opus for project-alpha
     const sessionA = { provider: "anthropic", id: "claude-opus-4-6" };
-    // Session B: user chose gpt-5.4 for project-beta
-    const sessionB = { provider: "openai", id: "gpt-5.4" };
+    // Session B: user chose gpt-5.5 for project-beta
+    const sessionB = { provider: "openai", id: "gpt-5.5" };
 
     // If Session A's error handler somehow picked up Session B's model,
     // the session model recovery should detect the divergence

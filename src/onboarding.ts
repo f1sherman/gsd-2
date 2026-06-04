@@ -480,7 +480,7 @@ async function runCustomOpenAIFlow(
   // Prompt for model ID
   const modelId = await p.text({
     message: 'Model ID to use:',
-    placeholder: 'gpt-4o',
+    placeholder: 'gpt-5.5',
     validate: (val) => {
       if (!val?.trim()) return 'Model ID is required'
     },
@@ -936,4 +936,3 @@ async function runDiscordChannelStep(p: ClackModule, pc: PicoModule, token: stri
   p.log.success(`Discord channel: ${pc.green(channelName ? `#${channelName}` : channelId)}`)
   return channelName ?? null
 }
-

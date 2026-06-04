@@ -19,7 +19,7 @@ const AVAILABLE_MODELS: TestModel[] = [
   { id: "claude-sonnet-4-6", provider: "anthropic" },
   { id: "claude-opus-4-6", provider: "anthropic" },
   { id: "claude-haiku-4-5", provider: "anthropic" },
-  { id: "openai/gpt-5.4-codex", provider: "openrouter" },
+  { id: "openai/gpt-5.5-codex", provider: "openrouter" },
   { id: "google/gemini-2.5-pro", provider: "openrouter" },
   { id: "gpt-4o", provider: "openai" },
   { id: "gpt-4o", provider: "azure" },
@@ -59,21 +59,21 @@ test("resolveModelId: provider/model case-insensitive", () => {
 // ─── OpenRouter-style model IDs (org/model as the ID) ───────────────────────
 
 test("resolveModelId: openrouter/org/model resolves full string as ID", () => {
-  const match = resolveModelId("openrouter/openai/gpt-5.4-codex", AVAILABLE_MODELS, undefined);
+  const match = resolveModelId("openrouter/openai/gpt-5.5-codex", AVAILABLE_MODELS, undefined);
   assert.ok(match, "should find the OpenRouter model with org/model ID");
   assert.equal(match.provider, "openrouter");
-  assert.equal(match.id, "openai/gpt-5.4-codex");
+  assert.equal(match.id, "openai/gpt-5.5-codex");
 });
 
 test("resolveModelId: openrouter org/model resolves when used as bare ID", () => {
-  // When the user specifies "openai/gpt-5.4-codex" without provider prefix,
+  // When the user specifies "openai/gpt-5.5-codex" without provider prefix,
   // and "openai" is not a known provider, it should try matching the full
   // string as a model ID.
   const modelsWithoutOpenai = AVAILABLE_MODELS.filter(m => m.provider !== "openai" && m.provider !== "azure");
-  const match = resolveModelId("openai/gpt-5.4-codex", modelsWithoutOpenai, undefined);
+  const match = resolveModelId("openai/gpt-5.5-codex", modelsWithoutOpenai, undefined);
   assert.ok(match, "should find the model when openai is not a known provider");
   assert.equal(match.provider, "openrouter");
-  assert.equal(match.id, "openai/gpt-5.4-codex");
+  assert.equal(match.id, "openai/gpt-5.5-codex");
 });
 
 // ─── Disambiguation with multiple providers ──────────────────────────────────

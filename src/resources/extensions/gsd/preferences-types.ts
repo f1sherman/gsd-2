@@ -246,7 +246,7 @@ export interface GSDPreferences {
   gate_evaluation?: GateEvaluationConfig;
   /** GitHub sync configuration. Opt-in: syncs GSD events to GitHub Issues, Milestones, and PRs. */
   github?: GitHubSyncConfig;
-  /** OpenAI service tier preference. "priority" = 2x cost, faster. "flex" = 0.5x cost, slower. Only affects gpt-5.4 models. */
+  /** OpenAI service tier preference. "priority" = 2x cost, faster. "flex" = 0.5x cost, slower. Only affects GPT-5.2+ models. */
   service_tier?: "priority" | "flex";
   /** Opt-in: search existing issues and PRs before filing from /gsd forensics. Uses additional AI tokens. */
   forensics_dedup?: boolean;

@@ -79,11 +79,11 @@ test("resolvePreferredModelConfig falls back to auto start model when heavy tier
 
     const config = resolvePreferredModelConfig("execute-task", {
       provider: "openai",
-      id: "gpt-5.4",
+      id: "gpt-5.5",
     });
 
     assert.deepEqual(config, {
-      primary: "openai/gpt-5.4",
+      primary: "openai/gpt-5.5",
       fallbacks: [],
     });
   } finally {

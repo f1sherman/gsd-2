@@ -144,9 +144,9 @@ function syntheticModel(overrides: Partial<Model<Api>>): Model<Api> {
 }
 
 describe("supportsXhigh — registry models", () => {
-	it("returns true for GPT-5.4 from the registry", () => {
-		const model = getModel("openai", "gpt-5.4" as any);
-		if (!model) return; // skip if model not in generated catalog
+	it("returns true for GPT-5.5 from the registry", () => {
+		const model = getModel("openai", "gpt-5.5" as any);
+		if (!model) return;
 		assert.equal(supportsXhigh(model), true);
 	});
 
@@ -174,8 +174,8 @@ describe("supportsXhigh — synthetic models (regression: custom/extension model
 });
 
 describe("applyCapabilityPatches", () => {
-	it("patches a GPT-5.4 model that has no capabilities", () => {
-		const model = syntheticModel({ id: "gpt-5.4-custom" });
+	it("patches a GPT-5.5 model that has no capabilities", () => {
+		const model = syntheticModel({ id: "gpt-5.5-custom" });
 		assert.equal(model.capabilities, undefined);
 
 		const [patched] = applyCapabilityPatches([model]);
@@ -202,7 +202,7 @@ describe("applyCapabilityPatches", () => {
 
 	it("preserves explicit capabilities over patches", () => {
 		const model = syntheticModel({
-			id: "gpt-5.4-custom",
+			id: "gpt-5.5-custom",
 			capabilities: { supportsXhigh: false, charsPerToken: 3 },
 		});
 		const [patched] = applyCapabilityPatches([model]);

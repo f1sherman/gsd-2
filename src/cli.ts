@@ -412,7 +412,7 @@ if (!configuredModel || !configuredExists) {
     (piDefault
       ? availableModels.find((m) => m.provider === piDefault.provider && m.id === piDefault.model)
       : undefined) ||
-    availableModels.find((m) => m.provider === 'openai' && m.id === 'gpt-5.4') ||
+    availableModels.find((m) => m.provider === 'openai' && m.id === 'gpt-5.5') ||
     availableModels.find((m) => m.provider === 'openai') ||
     availableModels.find((m) => m.provider === 'anthropic' && m.id === 'claude-opus-4-6') ||
     availableModels.find((m) => m.provider === 'anthropic' && m.id.includes('opus')) ||

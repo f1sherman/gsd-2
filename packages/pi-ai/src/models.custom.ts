@@ -14,6 +14,106 @@
 import type { Model } from "./types.js";
 
 export const CUSTOM_MODELS = {
+	// ─── OpenAI GPT-5.5 ────────────────────────────────────────────────
+	// Additive entries for the current latest OpenAI model while the generated
+	// models.dev catalog catches up.
+	openai: {
+		"gpt-5.5": {
+			id: "gpt-5.5",
+			name: "GPT-5.5",
+			api: "openai-responses",
+			provider: "openai",
+			baseUrl: "https://api.openai.com/v1",
+			reasoning: true,
+			input: ["text", "image"],
+			cost: {
+				input: 2.5,
+				output: 15,
+				cacheRead: 0.25,
+				cacheWrite: 0,
+			},
+			contextWindow: 272000,
+			maxTokens: 128000,
+		} satisfies Model<"openai-responses">,
+	},
+	"azure-openai-responses": {
+		"gpt-5.5": {
+			id: "gpt-5.5",
+			name: "GPT-5.5",
+			api: "azure-openai-responses",
+			provider: "azure-openai-responses",
+			baseUrl: "",
+			reasoning: true,
+			input: ["text", "image"],
+			cost: {
+				input: 2.5,
+				output: 15,
+				cacheRead: 0.25,
+				cacheWrite: 0,
+			},
+			contextWindow: 272000,
+			maxTokens: 128000,
+		} satisfies Model<"azure-openai-responses">,
+	},
+	"openai-codex": {
+		"gpt-5.5": {
+			id: "gpt-5.5",
+			name: "GPT-5.5",
+			api: "openai-codex-responses",
+			provider: "openai-codex",
+			baseUrl: "https://chatgpt.com/backend-api",
+			reasoning: true,
+			input: ["text", "image"],
+			cost: {
+				input: 2.5,
+				output: 15,
+				cacheRead: 0.25,
+				cacheWrite: 0,
+			},
+			contextWindow: 272000,
+			maxTokens: 128000,
+		} satisfies Model<"openai-codex-responses">,
+	},
+	openrouter: {
+		"openai/gpt-5.5": {
+			id: "openai/gpt-5.5",
+			name: "OpenAI: GPT-5.5",
+			api: "openai-completions",
+			provider: "openrouter",
+			baseUrl: "https://openrouter.ai/api/v1",
+			reasoning: true,
+			input: ["text", "image"],
+			cost: {
+				input: 2.5,
+				output: 15,
+				cacheRead: 0.25,
+				cacheWrite: 0,
+			},
+			contextWindow: 1050000,
+			maxTokens: 128000,
+		} satisfies Model<"openai-completions">,
+	},
+	"github-copilot": {
+		"gpt-5.5": {
+			id: "gpt-5.5",
+			name: "GPT-5.5",
+			api: "openai-responses",
+			provider: "github-copilot",
+			baseUrl: "https://api.individual.githubcopilot.com",
+			headers: { "User-Agent": "GitHubCopilotChat/0.35.0", "Editor-Version": "vscode/1.107.0", "Editor-Plugin-Version": "copilot-chat/0.35.0", "Copilot-Integration-Id": "vscode-chat" },
+			reasoning: true,
+			input: ["text", "image"],
+			cost: {
+				input: 0,
+				output: 0,
+				cacheRead: 0,
+				cacheWrite: 0,
+			},
+			contextWindow: 400000,
+			maxTokens: 128000,
+		} satisfies Model<"openai-responses">,
+	},
+
 	// ─── Alibaba Coding Plan ─────────────────────────────────────────────
 	// Direct Alibaba DashScope Coding Plan endpoint (OpenAI-compatible).
 	// NOT the same as alibaba/* models on OpenRouter — different endpoint & auth.

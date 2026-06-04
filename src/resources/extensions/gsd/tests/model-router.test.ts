@@ -172,11 +172,11 @@ test("#2192: unknown model is not downgraded — respects user config", () => {
   const config = { ...defaultRoutingConfig(), enabled: true };
   const result = resolveModelForComplexity(
     makeClassification("light"),
-    { primary: "gpt-5.4", fallbacks: [] },
+    { primary: "gpt-5.5", fallbacks: [] },
     config,
-    ["gpt-5.4", ...AVAILABLE_MODELS],
+    ["gpt-5.5", ...AVAILABLE_MODELS],
   );
-  assert.equal(result.modelId, "gpt-5.4", "unknown model should be used as-is");
+  assert.equal(result.modelId, "gpt-5.5", "unknown model should be used as-is");
   assert.equal(result.wasDowngraded, false, "should not be downgraded");
   assert.ok(result.reason.includes("not in the known tier map"), "reason should explain why");
 });
